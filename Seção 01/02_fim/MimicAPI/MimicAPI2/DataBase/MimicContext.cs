@@ -1,9 +1,15 @@
-﻿namespace MimicAPI2.DataBase
+﻿using Microsoft.EntityFrameworkCore;
+using MimicAPI2.Models;
+
+namespace MimicAPI2.DataBase
 {
-    public class MimicContext
+    public class MimicContext : DbContext
     {
+        public MimicContext(DbContextOptions<MimicContext> options) : base(options)
+        {
+                
+        }
 
-        //ckmdflkmd
-
+        public DbSet<Palavra> Palavras { get; set; }
     }
 }
