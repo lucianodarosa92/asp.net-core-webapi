@@ -29,7 +29,8 @@ namespace MimicAPI2
             });
 
 
-            services.AddDbContext<MimicContext>(opt => {
+            services.AddDbContext<MimicContext>(opt =>
+            {
                 opt.UseSqlite("Data Source=Database\\Mimic.db");
             });
 
@@ -53,6 +54,7 @@ namespace MimicAPI2
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            //app.UseStatusCodePages();
 
             app.UseMvc(routes =>
             {

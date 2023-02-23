@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MimicAPI2.DataBase;
 using MimicAPI2.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MimicAPI2.Controllers
 {
@@ -27,32 +25,48 @@ namespace MimicAPI2.Controllers
         [HttpGet, Route("{id}")]
         public ActionResult ListarPalavras(int id)
         {
-            return Ok(_banco.Palavras.Find(id));
+            var obj = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.id == id);
+            if (obj is null) return NotFound();
+
+            return Ok(obj);
         }
 
         [HttpPost, Route("")]
         public ActionResult CadastrarPalavra([FromBody] Palavra palavra)
         {
             _banco.Palavras.Add(palavra);
-
-            return Ok();
+            _banco.SaveChanges();
+            return Created($"/api/palavras/{palavra.id}", palavra);
         }
 
         [HttpPut, Route("{id}")]
-        public ActionResult AtualizarPalavra(int id, Palavra palavra)
+        public ActionResult AtualizarPalavra(int id, [FromBody] Palavra palavra)
         {
+            var obj = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.id == id);
+            if (obj is null) return NotFound();
+
             palavra.id = id;
             _banco.Palavras.Update(palavra);
+            _banco.SaveChanges();
 
-            return Ok();
+            return Ok(palavra);
         }
 
         [HttpDelete, Route("{id}")]
         public ActionResult DeletarPalavra(int id)
         {
-            _banco.Palavras.Remove(_banco.Palavras.Find(id));
+            var obj = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.id == id && a.Ativo == true);
+            if (obj is null) return NotFound();
 
-            return Ok();
+            if (obj.Ativo)
+            {
+                obj.Ativo = false;
+                _banco.Palavras.Update(obj);
+                _banco.SaveChanges();
+                return NoContent();
+            }
+
+            return NotFound();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace MimicAPI2.DataBase
     {
         public MimicContext(DbContextOptions<MimicContext> options) : base(options)
         {
-                
+
         }
 
         public DbSet<Palavra> Palavras { get; set; }
