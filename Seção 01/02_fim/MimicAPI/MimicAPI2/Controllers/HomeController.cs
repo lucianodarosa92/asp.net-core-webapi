@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MimicAPI2.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MimicAPI2.Controllers
 {

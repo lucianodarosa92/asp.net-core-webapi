@@ -1,5 +1,3 @@
-using System;
-
 namespace MimicAPI2.Models
 {
     public class ErrorViewModel
