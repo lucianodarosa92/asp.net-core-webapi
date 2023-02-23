@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MimicAPI2.DataBase;
 
 namespace MimicAPI2
 {
@@ -26,6 +28,10 @@ namespace MimicAPI2
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+
+            services.AddDbContext<MimicContext>(opt => {
+                opt.UseSqlite("Data Source=Database\\Mimic.db");
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
