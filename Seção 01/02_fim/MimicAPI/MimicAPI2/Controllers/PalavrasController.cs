@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MimicAPI2.DataBase;
 using MimicAPI2.Models;
+using System;
 using System.Linq;
 
 namespace MimicAPI2.Controllers
@@ -17,15 +18,24 @@ namespace MimicAPI2.Controllers
         }
 
         [HttpGet, Route("")]
-        public ActionResult ListarPalavras()
+        public ActionResult ListarPalavras(DateTime? data)
         {
-            return Ok(_banco.Palavras);
+            var obj = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.Ativo == true);
+            if (obj is null) return NotFound();
+
+            var item = _banco.Palavras.AsQueryable();
+            if (data.HasValue)
+            {
+                item = item.Where(a => (a.Criado >= data || a.Atualizado >= data) && a.Ativo == true);
+            }
+
+            return Ok(item);
         }
 
         [HttpGet, Route("{id}")]
         public ActionResult ListarPalavras(int id)
         {
-            var obj = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.id == id);
+            var obj = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.id == id && a.Ativo == true);
             if (obj is null) return NotFound();
 
             return Ok(obj);
