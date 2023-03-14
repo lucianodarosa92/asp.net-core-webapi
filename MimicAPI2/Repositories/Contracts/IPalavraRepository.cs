@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MimicAPI.Helpers;
+using MimicAPI2.Models;
 
 namespace MimicAPI.Repositories.Contracts
 {
-    interface IPalavraRepository
+    public interface IPalavraRepository
     {
+        PaginacaoList<Palavra> ListarPalavras(palavraUrlQuery query);
+        Palavra ListarPalavras(int id);
+        void CadastrarPalavra(Palavra palavra);
+        void AtualizarPalavra(Palavra palavra);
+        void DeletarPalavra(int id);
     }
 }
