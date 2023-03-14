@@ -54,7 +54,7 @@ namespace MimicAPI2
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            //app.UseStatusCodePages();
+            app.UseStatusCodePages();
 
             app.UseMvc(routes =>
             {
