@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MimicAPI.DataBase;
 using MimicAPI.Helpers;
+using MimicAPI.Models;
 using MimicAPI.Repositories.Contracts;
-using MimicAPI2.DataBase;
-using MimicAPI2.Models;
 using System;
 using System.Linq;
 
@@ -15,27 +15,27 @@ namespace MimicAPI.Repositories
         {
             _banco = banco;
         }
-        public PaginacaoList<Palavra> ListarPalavras(palavraUrlQuery query)
+        public PaginationList<Palavra> ListarPalavras(PalavraUrlQuery query)
         {
+            var paginacaoList = new PaginationList<Palavra>();
+
             var itens = _banco.Palavras.AsNoTracking().AsQueryable();
             if (query.Data.HasValue)
             {
                 itens = itens.Where(a => (a.Criado >= query.Data || a.Atualizado >= query.Data) && a.Ativo == true);
             }
-
-            var paginacaoList = new PaginacaoList<Palavra>();
-
-            if (query.PagNumero.HasValue)
+            
+            if (query.NumeroPagina.HasValue)
             {
                 var totalDeRegistros = itens.Count();
 
-                itens = itens.Skip((query.PagNumero.Value - 1) * query.PagRegistros.Value).Take(query.PagRegistros.Value);
+                itens = itens.Skip((query.NumeroPagina.Value - 1) * query.RegistrosPorPagina.Value).Take(query.RegistrosPorPagina.Value);
 
                 var paginacao = new Paginacao();
-                paginacao.NumeroPaginas = query.PagNumero.Value;
-                paginacao.RegistrosPorPagina = query.PagRegistros.Value;
+                paginacao.NumeroPagina = query.NumeroPagina.Value;
+                paginacao.RegistrosPorPagina = query.RegistrosPorPagina.Value;
                 paginacao.TotalDeRegistros = totalDeRegistros;
-                paginacao.TotalDePaginas = (int)Math.Ceiling((double)totalDeRegistros / query.PagRegistros.Value);
+                paginacao.TotalDePaginas = (int)Math.Ceiling((double)totalDeRegistros / query.RegistrosPorPagina.Value);
 
                 paginacaoList.Paginacao = paginacao;
             }
@@ -44,25 +44,25 @@ namespace MimicAPI.Repositories
 
             return paginacaoList;
         }
-        public Palavra ListarPalavras(int id)
+        public Palavra Listar(int id)
         {
-            var palavra = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.id == id && a.Ativo == true);
+            var palavra = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.Id == id && a.Ativo == true);
 
             return palavra;
         }
-        public void CadastrarPalavra(Palavra palavra)
+        public void Cadastrar(Palavra palavra)
         {
             _banco.Palavras.Add(palavra);
             _banco.SaveChanges();
         }
-        public void AtualizarPalavra(Palavra palavra)
+        public void Atualizar(Palavra palavra)
         {
             _banco.Palavras.Update(palavra);
             _banco.SaveChanges();
         }
-        public void DeletarPalavra(int id)
+        public void Deletar(int id)
         {
-            var palavra = ListarPalavras(id);
+            var palavra = Listar(id);
 
             if (palavra != null)
             {

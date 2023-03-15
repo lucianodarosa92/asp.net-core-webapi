@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repositories\Interfaces\**" />
+    <Content Remove="Repositories\Interfaces\**" />
+    <EmbeddedResource Remove="Repositories\Interfaces\**" />
+    <None Remove="Repositories\Interfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Helpers\prop.cs" />
   </ItemGroup>
 

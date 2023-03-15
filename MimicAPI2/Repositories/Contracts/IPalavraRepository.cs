@@ -1,14 +1,15 @@
 ﻿using MimicAPI.Helpers;
-using MimicAPI2.Models;
+using MimicAPI.Models;
 
 namespace MimicAPI.Repositories.Contracts
 {
     public interface IPalavraRepository
     {
-        PaginacaoList<Palavra> ListarPalavras(palavraUrlQuery query);
-        Palavra ListarPalavras(int id);
-        void CadastrarPalavra(Palavra palavra);
-        void AtualizarPalavra(Palavra palavra);
-        void DeletarPalavra(int id);
+        PaginationList<Palavra> ListarPalavras(PalavraUrlQuery query);
+        Palavra Listar(int id);
+        void Cadastrar(Palavra palavra);
+        void Atualizar(Palavra palavra);
+        void Deletar(int id);
+
     }
 }

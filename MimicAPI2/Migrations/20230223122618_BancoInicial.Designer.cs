@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MimicAPI2.DataBase;
+using MimicAPI.DataBase;
 
-namespace MimicAPI2.Migrations
+namespace MimicAPI.Migrations
 {
     [DbContext(typeof(MimicContext))]
     [Migration("20230223122618_BancoInicial")]
@@ -18,7 +18,7 @@ namespace MimicAPI2.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
-            modelBuilder.Entity("MimicAPI2.Models.Palavra", b =>
+            modelBuilder.Entity("MimicAPI.Models.Palavra", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();

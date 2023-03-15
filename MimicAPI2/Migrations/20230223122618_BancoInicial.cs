@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace MimicAPI2.Migrations
+namespace MimicAPI.Migrations
 {
     public partial class BancoInicial : Migration
     {

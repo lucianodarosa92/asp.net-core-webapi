@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MimicAPI2.Models;
+using MimicAPI.Models;
 
-namespace MimicAPI2.DataBase
+namespace MimicAPI.DataBase
 {
     public class MimicContext : DbContext
     {

@@ -2,7 +2,7 @@
 
 namespace MimicAPI.Helpers
 {
-    public class PaginacaoList<T> : List<T>
+    public class PaginationList<T> : List<T>
     {
         public Paginacao Paginacao { get; set; }
     }

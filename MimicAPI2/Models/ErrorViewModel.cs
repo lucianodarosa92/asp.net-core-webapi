@@ -1,4 +1,4 @@
-namespace MimicAPI2.Models
+namespace MimicAPI.Models
 {
     public class ErrorViewModel
     {

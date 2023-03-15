@@ -1,30 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MimicAPI.Helpers;
+using MimicAPI.Models;
 using MimicAPI.Repositories;
-using MimicAPI2.Models;
+using MimicAPI.Repositories.Contracts;
 using Newtonsoft.Json;
 using System.Linq;
 
-namespace MimicAPI2.Controllers
+namespace MimicAPI.Controllers
 {
     [Route("api/palavras")]
     public class PalavrasController : ControllerBase
     {
-        private readonly PalavraRepository _repositoryPalavra;
+        private readonly IPalavraRepository _repository;
 
-        public PalavrasController(PalavraRepository repositoryPalavra)
+        public PalavrasController(IPalavraRepository repository)
         {
-            _repositoryPalavra = repositoryPalavra;
+            _repository = repository;
         }
 
         [Route("")]
-        [HttpGet]        
-        public ActionResult ListarPalavras([FromQuery] palavraUrlQuery query)
+        [HttpGet]
+        public ActionResult ListarPalavras([FromQuery] PalavraUrlQuery query)
         {
-            var itens = _repositoryPalavra.ListarPalavras(query);
+            var itens = _repository.ListarPalavras(query);
             if (itens is null) return NotFound();
 
-            if (query.PagNumero > itens.Paginacao.NumeroPaginas || itens.Count() <= 0)
+            if (query.NumeroPagina > itens.Paginacao.TotalDePaginas || itens.Count() <= 0)
             {
                 return NotFound();
             }
@@ -35,44 +36,44 @@ namespace MimicAPI2.Controllers
         }
 
         [Route("{id}")]
-        [HttpGet]        
+        [HttpGet]
         public ActionResult ListarPalavras(int id)
         {
-            var palavra = _repositoryPalavra.ListarPalavras(id);
+            var palavra = _repository.Listar(id);
             if (palavra is null) return NotFound();
             return Ok(palavra);
         }
 
         [Route("")]
-        [HttpPost]        
+        [HttpPost]
         public ActionResult CadastrarPalavra([FromBody] Palavra palavra)
         {
-            _repositoryPalavra.CadastrarPalavra(palavra);
+            _repository.Cadastrar(palavra);
 
-            return Created($"/api/palavras/{palavra.id}", palavra);
+            return Created($"/api/palavras/{palavra.Id}", palavra);
         }
 
         [Route("{id}")]
-        [HttpPut]        
+        [HttpPut]
         public ActionResult AtualizarPalavra(int id, [FromBody] Palavra palavra)
         {
-            var obj = _repositoryPalavra.ListarPalavras(id);
+            var obj = _repository.Listar(id);
             if (obj is null) return NotFound();
 
-            palavra.id = id;
-            _repositoryPalavra.AtualizarPalavra(palavra);
+            palavra.Id = id;
+            _repository.Atualizar(palavra);
 
             return Ok(palavra);
         }
 
         [Route("{id}")]
-        [HttpDelete]        
+        [HttpDelete]
         public ActionResult DeletarPalavra(int id)
         {
-            var obj = _repositoryPalavra.ListarPalavras(id);
+            var obj = _repository.Listar(id);
             if (obj is null) return NotFound();
 
-            _repositoryPalavra.DeletarPalavra(id);
+            _repository.Deletar(id);
 
             return NoContent();
         }

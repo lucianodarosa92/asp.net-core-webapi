@@ -14,17 +14,17 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #line 1 "C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\Views\_ViewImports.cshtml"
-using MimicAPI2;
+using MimicAPI;
 
 #line default
 #line hidden
 #line 2 "C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\Views\_ViewImports.cshtml"
-using MimicAPI2.Models;
+using MimicAPI.Models;
 
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d8ddb6bffa5a9b264bf8f89038bf03c234083fd3", @"/Views/Home/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0b6c02817ba408650e19cc75bc4aa677f0e897c3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4faa14a604408b5f16ab3a2807c4878c61849604", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Privacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998
