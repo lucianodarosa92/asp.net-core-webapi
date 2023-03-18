@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "LXalUwWgmTWFVInsNp8JSFd+PJeNNd+GOAcpgYWPrQ4DI+JcYBt1KTSa4lDeEG74Gz+eE+1cIdhGYLPgv9qA9g==",
+  "dgSpecHash": "JCm9kfdtLebbn8lu5LgASKuVvq2wWAt5gm9TMAuCMNiG7eNH6979ZlUea+IFxBj4FvDQLzpV6LOayl6EfNlZFg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Luciano da Rosa\\source\\repos\\Dev\\asp.net-core-webapi\\MimicAPI2\\MimicAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Luciano da Rosa\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\Luciano da Rosa\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\Luciano da Rosa\\.nuget\\packages\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",
     "C:\\Users\\Luciano da Rosa\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",

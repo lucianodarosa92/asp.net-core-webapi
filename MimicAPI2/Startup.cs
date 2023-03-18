@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MimicAPI.DataBase;
+using MimicAPI.Helpers;
 using MimicAPI.Repositories;
 using MimicAPI.Repositories.Contracts;
 
@@ -23,20 +25,20 @@ namespace MimicAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<MimicContext>(opt => {
-            //    opt.UseSqlite("Data Source=Database\\Mimic.db");
-            //});
-            //services.AddMvc();
-            //services.AddScoped<IPalavraRepository, PalavraRepository>();
-
-
-
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            #region autoMapper-config
+            var config = new MapperConfiguration(cfg => {
+                cfg.AddProfile(new DTOMapperProfile());           
+            });
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
+            #endregion
 
             services.AddDbContext<MimicContext>(opt =>
             {

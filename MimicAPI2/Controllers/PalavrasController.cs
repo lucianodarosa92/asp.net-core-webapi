@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using MimicAPI.Helpers;
 using MimicAPI.Models;
-using MimicAPI.Repositories;
+using MimicAPI.Models.DTO;
 using MimicAPI.Repositories.Contracts;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MimicAPI.Controllers
@@ -12,10 +14,12 @@ namespace MimicAPI.Controllers
     public class PalavrasController : ControllerBase
     {
         private readonly IPalavraRepository _repository;
+        private readonly IMapper _mapper;
 
-        public PalavrasController(IPalavraRepository repository)
+        public PalavrasController(IPalavraRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [Route("")]
@@ -35,27 +39,42 @@ namespace MimicAPI.Controllers
             return Ok(itens.ToList());
         }
 
-        [Route("{id}")]
-        [HttpGet]
-        public ActionResult ListarPalavras(int id)
+        [HttpGet("{id}", Name = "Listar")]
+        public ActionResult Listar(int id)
         {
             var palavra = _repository.Listar(id);
             if (palavra is null) return NotFound();
-            return Ok(palavra);
+
+            PalavraDTO palavraDTO = _mapper.Map<Palavra, PalavraDTO>(palavra);
+
+            palavraDTO.Links = new List<LinkDTO>();
+
+            palavraDTO.Links.Add(
+                new LinkDTO("self", Url.Link("", new { Id = palavraDTO.Id }), "GET")
+            );
+
+            palavraDTO.Links.Add(
+                new LinkDTO("update", Url.Link("", new { Id = palavraDTO.Id }), "PUT")
+            );
+
+            palavraDTO.Links.Add(
+                new LinkDTO("delete", Url.Link("", new { Id = palavraDTO.Id }), "DELETE")
+            );
+
+            return Ok(palavraDTO);
         }
 
         [Route("")]
         [HttpPost]
-        public ActionResult CadastrarPalavra([FromBody] Palavra palavra)
+        public ActionResult Cadastrar([FromBody] Palavra palavra)
         {
             _repository.Cadastrar(palavra);
 
             return Created($"/api/palavras/{palavra.Id}", palavra);
         }
 
-        [Route("{id}")]
-        [HttpPut]
-        public ActionResult AtualizarPalavra(int id, [FromBody] Palavra palavra)
+        [HttpPut("{id}", Name = "")]
+        public ActionResult Atualizar(int id, [FromBody] Palavra palavra)
         {
             var obj = _repository.Listar(id);
             if (obj is null) return NotFound();
@@ -66,9 +85,8 @@ namespace MimicAPI.Controllers
             return Ok(palavra);
         }
 
-        [Route("{id}")]
-        [HttpDelete]
-        public ActionResult DeletarPalavra(int id)
+        [HttpDelete("{id}", Name = "")]
+        public ActionResult Deletar(int id)
         {
             var obj = _repository.Listar(id);
             if (obj is null) return NotFound();
