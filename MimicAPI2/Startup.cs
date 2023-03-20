@@ -33,8 +33,9 @@ namespace MimicAPI
             });
 
             #region autoMapper-config
-            var config = new MapperConfiguration(cfg => {
-                cfg.AddProfile(new DTOMapperProfile());           
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new DTOMapperProfile());
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

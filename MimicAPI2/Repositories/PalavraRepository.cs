@@ -15,16 +15,16 @@ namespace MimicAPI.Repositories
         {
             _banco = banco;
         }
-        public PaginationList<Palavra> ListarPalavras(PalavraUrlQuery query)
+        public PaginationList<Palavra> ListarTodas(PalavraUrlQuery query)
         {
             var paginacaoList = new PaginationList<Palavra>();
 
             var itens = _banco.Palavras.AsNoTracking().AsQueryable();
-            if (query.Data.HasValue)
-            {
-                itens = itens.Where(a => (a.Criado >= query.Data || a.Atualizado >= query.Data) && a.Ativo == true);
-            }
-            
+
+            itens = itens.Where(a => a.Ativo == true);
+
+            if (query.Data.HasValue) itens = itens.Where(a => a.Criado >= query.Data || a.Atualizado >= query.Data);
+
             if (query.NumeroPagina.HasValue)
             {
                 var totalDeRegistros = itens.Count();
@@ -36,17 +36,16 @@ namespace MimicAPI.Repositories
                 paginacao.RegistrosPorPagina = query.RegistrosPorPagina.Value;
                 paginacao.TotalDeRegistros = totalDeRegistros;
                 paginacao.TotalDePaginas = (int)Math.Ceiling((double)totalDeRegistros / query.RegistrosPorPagina.Value);
-
                 paginacaoList.Paginacao = paginacao;
             }
 
-            paginacaoList.AddRange(itens.ToList());
+            paginacaoList.Results.AddRange(itens.ToList());
 
             return paginacaoList;
         }
         public Palavra Listar(int id)
         {
-            var palavra = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.Id == id && a.Ativo == true);
+            var palavra = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.Id == id || a.Ativo == true);
 
             return palavra;
         }

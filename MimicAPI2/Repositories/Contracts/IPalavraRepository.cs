@@ -5,7 +5,7 @@ namespace MimicAPI.Repositories.Contracts
 {
     public interface IPalavraRepository
     {
-        PaginationList<Palavra> ListarPalavras(PalavraUrlQuery query);
+        PaginationList<Palavra> ListarTodas(PalavraUrlQuery query);
         Palavra Listar(int id);
         void Cadastrar(Palavra palavra);
         void Atualizar(Palavra palavra);
