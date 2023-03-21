@@ -5,6 +5,7 @@ using MimicAPI.Models;
 using MimicAPI.Models.DTO;
 using MimicAPI.Repositories.Contracts;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,85 +26,125 @@ namespace MimicAPI.Controllers
         [HttpGet("", Name = "ListarTodas")]
         public ActionResult ListarTodas([FromQuery] PalavraUrlQuery query)
         {
-            var itens = _repository.ListarTodas(query);
+            var Palavras = _repository.ListarTodas(query);
 
-            if (itens is null || itens.Results.Count() <= 0)
+            if (Palavras is null || Palavras.Results.Count() <= 0)
                 return NotFound();
 
-            var itensDTO = _mapper.Map<PaginationList<Palavra>, PaginationList<PalavraDTO>>(itens);
+            PaginationList<PalavraDTO> palavrasDTO = CriarLinksListaPalavrasDTO(query, Palavras);
 
-            foreach (var itemDTO in itensDTO.Results)
+            return Ok(palavrasDTO);
+        }
+
+        private PaginationList<PalavraDTO> CriarLinksListaPalavrasDTO(PalavraUrlQuery query, PaginationList<Palavra> palavras)
+        {
+            var palavrasDTO = _mapper.Map<PaginationList<Palavra>, PaginationList<PalavraDTO>>(palavras);
+
+            foreach (var palavraDTO in palavrasDTO.Results)
             {
-                itemDTO.Links = new List<LinkDTO>();
-                itemDTO.Links.Add(new LinkDTO("self", Url.Link("Listar", new { Id = itemDTO.Id }), "GET"));
+                palavraDTO.Links = new List<LinkDTO>();
+                palavraDTO.Links.Add(new LinkDTO("self", Url.Link("Listar", new { Id = palavraDTO.Id }), "GET"));
             }
 
-            itensDTO.Links.Add(new LinkDTO("self", Url.Link("ListarTodas", query), "GET"));
+            palavrasDTO.Links.Add(new LinkDTO("self", Url.Link("ListarTodas", query), "GET"));
 
-            if (itens.Paginacao != null)
+            if (palavras.Paginacao != null)
             {
-                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(itens.Paginacao));
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(palavras.Paginacao));
 
-                if (query.NumeroPagina + 1 <= itens.Paginacao.TotalDePaginas)
+                if (query.NumeroPagina + 1 <= palavras.Paginacao.TotalDePaginas)
                 {
                     var queryStr = new PalavraUrlQuery() { NumeroPagina = query.NumeroPagina + 1, RegistrosPorPagina = query.RegistrosPorPagina, Data = query.Data };
-                    itens.Links.Add(new LinkDTO("next", Url.Link("ListarTodas", queryStr), "GET"));
+                    palavrasDTO.Links.Add(new LinkDTO("next", Url.Link("ListarTodas", queryStr), "GET"));
                 }
 
                 if (query.NumeroPagina - 1 > 0)
                 {
                     var queryStr = new PalavraUrlQuery() { NumeroPagina = query.NumeroPagina - 1, RegistrosPorPagina = query.RegistrosPorPagina, Data = query.Data };
 
-                    itens.Links.Add(new LinkDTO("prev", Url.Link("ListarTodas", queryStr), "GET"));
+                    palavrasDTO.Links.Add(new LinkDTO("prev", Url.Link("ListarTodas", queryStr), "GET"));
                 }
             }
 
-            return Ok(itensDTO);
+            return palavrasDTO;
         }
 
         [HttpGet("{id}", Name = "Listar")]
         public ActionResult Listar(int id)
         {
-            var item = _repository.Listar(id);
+            var palavra = _repository.Listar(id);
 
-            if (item is null) return NotFound();
+            if (palavra is null) 
+                return NotFound();
 
-            PalavraDTO itemDTO = _mapper.Map<Palavra, PalavraDTO>(item);
+            PalavraDTO palavraDTO = _mapper.Map<Palavra, PalavraDTO>(palavra);
 
-            itemDTO.Links = new List<LinkDTO>();
+            palavraDTO.Links = new List<LinkDTO>();
 
-            itemDTO.Links.Add(new LinkDTO("self", Url.Link("Listar", new { Id = itemDTO.Id }), "GET"));
-            itemDTO.Links.Add(new LinkDTO("update", Url.Link("Listar", new { Id = itemDTO.Id }), "PUT"));
-            itemDTO.Links.Add(new LinkDTO("delete", Url.Link("Listar", new { Id = itemDTO.Id }), "DELETE"));
+            palavraDTO.Links.Add(new LinkDTO("self", Url.Link("Listar", new { Id = palavraDTO.Id }), "GET"));
+            palavraDTO.Links.Add(new LinkDTO("update", Url.Link("Listar", new { Id = palavraDTO.Id }), "PUT"));
+            palavraDTO.Links.Add(new LinkDTO("delete", Url.Link("Listar", new { Id = palavraDTO.Id }), "DELETE"));
 
-            return Ok(itemDTO);
+            return Ok(palavraDTO);
         }
 
         [HttpPost("", Name = "Cadastrar")]
         public ActionResult Cadastrar([FromBody] Palavra palavra)
         {
+            if (palavra == null) 
+                return BadRequest();
+
+            if (!ModelState.IsValid) 
+                return UnprocessableEntity(ModelState);
+
+            palavra.Ativo = true;
+            palavra.Criado = DateTime.Now;
+
             _repository.Cadastrar(palavra);
 
-            return Created($"/api/palavras/{palavra.Id}", palavra);
+            PalavraDTO palavraDTO = _mapper.Map<Palavra, PalavraDTO>(palavra);
+            
+            palavraDTO.Links = new List<LinkDTO>();
+
+            palavraDTO.Links.Add(new LinkDTO("self", Url.Link("Listar", new { Id = palavraDTO.Id }), "GET"));
+
+            return Created($"/api/palavras/{palavra.Id}", palavraDTO);
         }
 
-        [HttpPut("", Name = "Atualizar")]
+        [HttpPut("{id}", Name = "Atualizar")]
         public ActionResult Atualizar(int id, [FromBody] Palavra palavra)
         {
-            var iten = _repository.Listar(id);
-            if (iten is null) return NotFound();
+            var item = _repository.Listar(id);
+            if (item is null) 
+                return NotFound();
+
+            if (palavra == null) 
+                return BadRequest();
+
+            if (!ModelState.IsValid) 
+                return UnprocessableEntity(ModelState);
 
             palavra.Id = id;
+            palavra.Ativo = item.Ativo;
+            palavra.Criado = item.Criado;
+            palavra.Atualizado = DateTime.Now;
             _repository.Atualizar(palavra);
 
-            return Ok(palavra);
+            PalavraDTO palavraDTO = _mapper.Map<Palavra, PalavraDTO>(palavra);
+
+            palavraDTO.Links = new List<LinkDTO>();
+
+            palavraDTO.Links.Add(new LinkDTO("self", Url.Link("Listar", new { Id = palavraDTO.Id }), "GET"));
+
+            return Ok(palavraDTO);
         }
 
         [HttpDelete("", Name = "Deletar")]
         public ActionResult Deletar(int id)
         {
             var iten = _repository.Listar(id);
-            if (iten is null) return NotFound();
+            if (iten is null) 
+                return NotFound();
 
             _repository.Deletar(id);
 

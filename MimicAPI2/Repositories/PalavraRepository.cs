@@ -45,7 +45,7 @@ namespace MimicAPI.Repositories
         }
         public Palavra Listar(int id)
         {
-            var palavra = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.Id == id || a.Ativo == true);
+            var palavra = _banco.Palavras.AsNoTracking().FirstOrDefault(a => a.Id == id && a.Ativo == true);
 
             return palavra;
         }
