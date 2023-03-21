@@ -74,7 +74,7 @@ namespace MimicAPI.V1.Controllers
         {
             var palavra = _repository.Listar(id);
 
-            if (palavra is null) 
+            if (palavra is null)
                 return NotFound();
 
             PalavraDTO palavraDTO = _mapper.Map<Palavra, PalavraDTO>(palavra);
@@ -91,10 +91,10 @@ namespace MimicAPI.V1.Controllers
         [HttpPost("", Name = "Cadastrar")]
         public ActionResult Cadastrar([FromBody] Palavra palavra)
         {
-            if (palavra == null) 
+            if (palavra == null)
                 return BadRequest();
 
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
 
             palavra.Ativo = true;
@@ -103,7 +103,7 @@ namespace MimicAPI.V1.Controllers
             _repository.Cadastrar(palavra);
 
             PalavraDTO palavraDTO = _mapper.Map<Palavra, PalavraDTO>(palavra);
-            
+
             palavraDTO.Links = new List<LinkDTO>();
 
             palavraDTO.Links.Add(new LinkDTO("self", Url.Link("Listar", new { Id = palavraDTO.Id }), "GET"));
@@ -115,13 +115,13 @@ namespace MimicAPI.V1.Controllers
         public ActionResult Atualizar(int id, [FromBody] Palavra palavra)
         {
             var item = _repository.Listar(id);
-            if (item is null) 
+            if (item is null)
                 return NotFound();
 
-            if (palavra == null) 
+            if (palavra == null)
                 return BadRequest();
 
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
 
             palavra.Id = id;
@@ -143,7 +143,7 @@ namespace MimicAPI.V1.Controllers
         public ActionResult Deletar(int id)
         {
             var iten = _repository.Listar(id);
-            if (iten is null) 
+            if (iten is null)
                 return NotFound();
 
             _repository.Deletar(id);

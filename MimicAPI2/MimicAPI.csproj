@@ -6,6 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="V2\Controllers\**" />
+    <Compile Remove="V2\Models\**" />
+    <Compile Remove="V2\Repositories\**" />
+    <Content Remove="V2\Controllers\**" />
+    <Content Remove="V2\Models\**" />
+    <Content Remove="V2\Repositories\**" />
+    <EmbeddedResource Remove="V2\Controllers\**" />
+    <EmbeddedResource Remove="V2\Models\**" />
+    <EmbeddedResource Remove="V2\Repositories\**" />
+    <None Remove="V2\Controllers\**" />
+    <None Remove="V2\Models\**" />
+    <None Remove="V2\Repositories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Helpers\prop.cs" />
   </ItemGroup>
 
@@ -23,7 +38,7 @@
 
 
   <ItemGroup>
-    <Folder Include="V2\" />
+    <Folder Include="V2\NewFolder\" />
   </ItemGroup>
 
 </Project>
