@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MimicAPI.Models
+namespace MimicAPI.V1.Models
 {
     public class Palavra
     {

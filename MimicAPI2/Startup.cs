@@ -8,8 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MimicAPI.DataBase;
 using MimicAPI.Helpers;
-using MimicAPI.Repositories;
-using MimicAPI.Repositories.Interfaces;
+using MimicAPI.V1.Repositories;
+using MimicAPI.V1.Repositories.Interfaces;
 
 namespace MimicAPI
 {

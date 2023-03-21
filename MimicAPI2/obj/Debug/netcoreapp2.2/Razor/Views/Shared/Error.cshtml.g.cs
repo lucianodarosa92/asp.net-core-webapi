@@ -19,12 +19,12 @@ using MimicAPI;
 #line default
 #line hidden
 #line 2 "C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\Views\_ViewImports.cshtml"
-using MimicAPI.Models;
+using MimicAPI.V1.Models;
 
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d6a5625cc8fb4476f348b0fe9041c550465d8bf9", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4faa14a604408b5f16ab3a2807c4878c61849604", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6ab2d31b147fd1f14aee0bd3406a6c85d7a84d21", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998

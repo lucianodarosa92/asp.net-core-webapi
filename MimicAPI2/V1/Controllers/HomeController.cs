@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MimicAPI.Models;
+using MimicAPI.V1.Models;
 using System.Diagnostics;
 
-namespace MimicAPI.Controllers
+namespace MimicAPI.V1.Controllers
 {
     public class HomeController : Controller
     {

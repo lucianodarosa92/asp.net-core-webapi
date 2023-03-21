@@ -31,4 +31,3 @@ C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\obj\Debu
 C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\obj\Debug\netcoreapp2.2\MimicAPI.pdb
 C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\obj\Debug\netcoreapp2.2\MimicAPI.genruntimeconfig.cache
 C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\obj\Debug\netcoreapp2.2\MimicAPI.csproj.CopyComplete
-C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\obj\Debug\netcoreapp2.2\MimicAPI.csproj.AssemblyReference.cache
