@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MimicAPI.Helpers;
 using MimicAPI.Models;
 using MimicAPI.Models.DTO;
-using MimicAPI.Repositories.Contracts;
+using MimicAPI.Repositories.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

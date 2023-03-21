@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MimicAPI.DataBase;
 using MimicAPI.Helpers;
 using MimicAPI.Repositories;
-using MimicAPI.Repositories.Contracts;
+using MimicAPI.Repositories.Interfaces;
 
 namespace MimicAPI
 {

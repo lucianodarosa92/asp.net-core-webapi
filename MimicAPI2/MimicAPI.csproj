@@ -6,13 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Repositories\Interfaces\**" />
-    <Content Remove="Repositories\Interfaces\**" />
-    <EmbeddedResource Remove="Repositories\Interfaces\**" />
-    <None Remove="Repositories\Interfaces\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Helpers\prop.cs" />
   </ItemGroup>
 
@@ -26,6 +19,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="V2\" />
+    <Folder Include="V1\" />
   </ItemGroup>
 
 </Project>

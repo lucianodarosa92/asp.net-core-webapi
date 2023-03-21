@@ -2,7 +2,7 @@
 using MimicAPI.DataBase;
 using MimicAPI.Helpers;
 using MimicAPI.Models;
-using MimicAPI.Repositories.Contracts;
+using MimicAPI.Repositories.Interfaces;
 using System;
 using System.Linq;
 
