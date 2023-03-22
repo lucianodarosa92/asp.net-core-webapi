@@ -5,6 +5,7 @@ C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\bin\Debu
 C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\bin\Debug\netcoreapp2.2\MimicAPI.runtimeconfig.dev.json
 C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\bin\Debug\netcoreapp2.2\MimicAPI.dll
 C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\bin\Debug\netcoreapp2.2\MimicAPI.pdb
+C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\bin\Debug\netcoreapp2.2\MimicAPI.xml
 C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\bin\Debug\netcoreapp2.2\MimicAPI.Views.dll
 C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\bin\Debug\netcoreapp2.2\MimicAPI.Views.pdb
 C:\Users\Luciano da Rosa\source\repos\Dev\asp.net-core-webapi\MimicAPI2\obj\Debug\netcoreapp2.2\MimicAPI.GeneratedMSBuildEditorConfig.editorconfig

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MimicAPI</name>
+    </assembly>
+    <members>
+        <member name="M:MimicAPI.V1.Controllers.PalavrasController.ListarTodas(MimicAPI.Helpers.PalavraUrlQuery)">
+            <summary>
+            teste V1
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MimicAPI.V1.Controllers.PalavrasController.Listar(System.Int32)">
+            <summary>
+            teste comentáriosafnfksfnsfsakdfbskjfhbksjfbhkhf
+            </summary>
+            <param name="id">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+            <returns></returns>
+        </member>
+        <member name="M:MimicAPI.V1.Controllers.PalavrasController.Cadastrar(MimicAPI.V1.Models.Palavra)">
+            <summary>
+            teste comentáriosafnfksfnsfsakdfbskjfhbksjfbhkhf
+            </summary>
+            <param name="palavra">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+            <returns></returns>
+        </member>
+        <member name="M:MimicAPI.V1.Controllers.PalavrasController.Atualizar(System.Int32,MimicAPI.V1.Models.Palavra)">
+            <summary>
+            teste comentáriosafnfksfnsfsakdfbskjfhbksjfbhkhf
+            </summary>
+            <param name="id">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+            <param name="palavra">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+            <returns></returns>
+        </member>
+        <member name="M:MimicAPI.V1.Controllers.PalavrasController.Deletar(System.Int32)">
+            <summary>
+            teste comentáriosafnfksfnsfsakdfbskjfhbksjfbhkhf
+            </summary>
+            <param name="id">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+            <returns></returns>
+        </member>
+        <member name="M:MimicAPI.V2.Controllers.PalavrasController.ListarTodas">
+            <summary>
+            teste V2
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

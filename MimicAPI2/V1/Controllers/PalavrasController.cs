@@ -11,7 +11,11 @@ using System.Linq;
 
 namespace MimicAPI.V1.Controllers
 {
-    [Route("api/palavras")]
+    [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    //[Route("api/[controller]")]
+    [ApiVersion("1.0", Deprecated = true)]
+    [ApiVersion("1.1")]
     public class PalavrasController : ControllerBase
     {
         private readonly IPalavraRepository _repository;
@@ -23,6 +27,13 @@ namespace MimicAPI.V1.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// teste V1
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        [MapToApiVersion("1.0")]
+        [MapToApiVersion("1.1")]
         [HttpGet("", Name = "ListarTodas")]
         public ActionResult ListarTodas([FromQuery] PalavraUrlQuery query)
         {
@@ -69,6 +80,13 @@ namespace MimicAPI.V1.Controllers
             return palavrasDTO;
         }
 
+        /// <summary>
+        /// teste comentáriosafnfksfnsfsakdfbskjfhbksjfbhkhf
+        /// </summary>
+        /// <param name="id">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+        /// <returns></returns>
+        [MapToApiVersion("1.0")]
+        [MapToApiVersion("1.1")]
         [HttpGet("{id}", Name = "Listar")]
         public ActionResult Listar(int id)
         {
@@ -88,6 +106,13 @@ namespace MimicAPI.V1.Controllers
             return Ok(palavraDTO);
         }
 
+        /// <summary>
+        /// teste comentáriosafnfksfnsfsakdfbskjfhbksjfbhkhf
+        /// </summary>
+        /// <param name="palavra">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+        /// <returns></returns>
+        [MapToApiVersion("1.0")]
+        [MapToApiVersion("1.1")]
         [HttpPost("", Name = "Cadastrar")]
         public ActionResult Cadastrar([FromBody] Palavra palavra)
         {
@@ -98,7 +123,8 @@ namespace MimicAPI.V1.Controllers
                 return UnprocessableEntity(ModelState);
 
             palavra.Ativo = true;
-            palavra.Criado = DateTime.Now;
+            DateTime dateTime = DateTime.Now;
+            palavra.Criado = dateTime.AddTicks(-(dateTime.Ticks % TimeSpan.TicksPerSecond));
 
             _repository.Cadastrar(palavra);
 
@@ -111,6 +137,14 @@ namespace MimicAPI.V1.Controllers
             return Created($"/api/palavras/{palavra.Id}", palavraDTO);
         }
 
+        /// <summary>
+        /// teste comentáriosafnfksfnsfsakdfbskjfhbksjfbhkhf
+        /// </summary>
+        /// <param name="id">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+        /// <param name="palavra">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+        /// <returns></returns>
+        [MapToApiVersion("1.0")]
+        [MapToApiVersion("1.1")]
         [HttpPut("{id}", Name = "Atualizar")]
         public ActionResult Atualizar(int id, [FromBody] Palavra palavra)
         {
@@ -127,7 +161,9 @@ namespace MimicAPI.V1.Controllers
             palavra.Id = id;
             palavra.Ativo = item.Ativo;
             palavra.Criado = item.Criado;
-            palavra.Atualizado = DateTime.Now;
+            DateTime dateTime = DateTime.Now;
+            palavra.Atualizado = dateTime.AddTicks(-(dateTime.Ticks % TimeSpan.TicksPerSecond));
+
             _repository.Atualizar(palavra);
 
             PalavraDTO palavraDTO = _mapper.Map<Palavra, PalavraDTO>(palavra);
@@ -139,7 +175,13 @@ namespace MimicAPI.V1.Controllers
             return Ok(palavraDTO);
         }
 
-        [HttpDelete("", Name = "Deletar")]
+        /// <summary>
+        /// teste comentáriosafnfksfnsfsakdfbskjfhbksjfbhkhf
+        /// </summary>
+        /// <param name="id">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+        /// <returns></returns>
+        [MapToApiVersion("1.1")]
+        [HttpDelete("{id}", Name = "Deletar")]
         public ActionResult Deletar(int id)
         {
             var iten = _repository.Listar(id);
