@@ -81,9 +81,9 @@ namespace MimicAPI.V1.Controllers
         }
 
         /// <summary>
-        /// teste comentáriosafnfksfnsfsakdfbskjfhbksjfbhkhf
+        ///
         /// </summary>
-        /// <param name="id">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [MapToApiVersion("1.0")]
         [MapToApiVersion("1.1")]
