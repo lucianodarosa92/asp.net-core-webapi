@@ -12,11 +12,11 @@
             <returns></returns>
         </member>
         <member name="M:MimicAPI.V1.Controllers.PalavrasController.Listar(System.Int32)">
-            <summary>
-            teste comentáriosafnfksfnsfsakdfbskjfhbksjfbhkhf
-            </summary>
-            <param name="id">sfnklsjnflksjfnklsjfnklsdjfnlksjfnlskajfdn</param>
-            <returns></returns>
+             <summary>
+            
+             </summary>
+             <param name="id"></param>
+             <returns></returns>
         </member>
         <member name="M:MimicAPI.V1.Controllers.PalavrasController.Cadastrar(MimicAPI.V1.Models.Palavra)">
             <summary>

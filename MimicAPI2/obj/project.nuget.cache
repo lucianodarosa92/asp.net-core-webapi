@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BmUMbRE0Qjv4k25BvKC3LLGNIZHYnMbiKhrpbv0Tys7miARwE0Xt9Jk4OJ+MPbBy1gOjf8NoHa9KewjzWRUphA==",
+  "dgSpecHash": "EmjBx0PcawJ0ECPInDz2dkuFku1FSa6rDat72/iQc5AyjJoA5FqBshkRfxuloFzZicc5iWPn+yqWy6TNWD5a+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Luciano da Rosa\\source\\repos\\Dev\\asp.net-core-webapi\\MimicAPI2\\MimicAPI.csproj",
+  "projectFilePath": "C:\\Users\\Luciano da Rosa\\source\\repos\\asp.net-core-webapi\\MimicAPI2\\MimicAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Luciano da Rosa\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\Luciano da Rosa\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",

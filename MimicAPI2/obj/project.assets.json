@@ -12734,11 +12734,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Luciano da Rosa\\source\\repos\\Dev\\asp.net-core-webapi\\MimicAPI2\\MimicAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Luciano da Rosa\\source\\repos\\asp.net-core-webapi\\MimicAPI2\\MimicAPI.csproj",
       "projectName": "MimicAPI",
-      "projectPath": "C:\\Users\\Luciano da Rosa\\source\\repos\\Dev\\asp.net-core-webapi\\MimicAPI2\\MimicAPI.csproj",
+      "projectPath": "C:\\Users\\Luciano da Rosa\\source\\repos\\asp.net-core-webapi\\MimicAPI2\\MimicAPI.csproj",
       "packagesPath": "C:\\Users\\Luciano da Rosa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Luciano da Rosa\\source\\repos\\Dev\\asp.net-core-webapi\\MimicAPI2\\obj\\",
+      "outputPath": "C:\\Users\\Luciano da Rosa\\source\\repos\\asp.net-core-webapi\\MimicAPI2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
