@@ -11,6 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="V2\Models\**" />
+    <Compile Remove="V2\Repositories\**" />
+    <Content Remove="V2\Models\**" />
+    <Content Remove="V2\Repositories\**" />
+    <EmbeddedResource Remove="V2\Models\**" />
+    <EmbeddedResource Remove="V2\Repositories\**" />
+    <None Remove="V2\Models\**" />
+    <None Remove="V2\Repositories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Helpers\prop.cs" />
   </ItemGroup>
 
@@ -31,12 +42,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="4.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="4.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="4.0.1" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="V2\Models\" />
-    <Folder Include="V2\Repositories\" />
   </ItemGroup>
 
 </Project>
